@@ -44,6 +44,38 @@ namespace Epstein_Ross_Interfaces
                 i++;
             }
 
+            Console.Write("Please make a selection >  ");
+            string _userChoice = Console.ReadLine();
+
+            //validate the choice is an integer
+            bool isInt = Validation.CheckInt(_userChoice);
+            int _userChoiceInt = isInt ? Int32.Parse(_userChoice) : 000;
+
+            //validate the choice is in range of the menu
+            bool isInRange = Validation.CheckRange(_userChoiceInt, menuLength + 1);
+
+            //ask again if the validation returns false
+            while (!isInt || !isInRange)
+            {
+                i = 1;
+                DisplayHeader("WELCOME TO THE MYTHICAL ZOO");
+
+                foreach (var item in menu)
+                {
+                    Console.WriteLine($"[{i}]:  {item}");
+                    i++;
+                }
+
+                //error if menu selection out of range    
+                Console.Write($"Invalid entry!  Please enter a number between 1 and {menuLength} > ");
+                _userChoice = Console.ReadLine();
+                isInt = Validation.CheckInt(_userChoice);
+                _userChoiceInt = isInt ? Int32.Parse(_userChoice) : 000; ;
+                isInRange = Validation.CheckRange(_userChoiceInt, (menuLength + 1));
+            }
+
+            string chosenItem = menu[_userChoiceInt - 1];
+            Console.WriteLine(chosenItem);
             Console.ReadKey();
         }
 
