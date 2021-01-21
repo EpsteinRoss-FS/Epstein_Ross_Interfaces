@@ -11,7 +11,8 @@ namespace Epstein_Ross_Interfaces
         public static List<String> menu = new List<String>();
         public static Animal selectedAnimalObj;
 
-        public static List<string> animalOptions = { }
+        public static List<string> nonTrainableMenu = new List<string> {"Listen to a Noise","Feed Animal A Treat", "Select Different Animal" };
+        public static List<string> trainableMenu = new List<string> { "Listen to a Noise", "Feed Animal A Treat", "Select Different Animal","Train The Animal", "Signal A Behavior"};
 
         public Zookeeper() 
         {
@@ -81,10 +82,7 @@ namespace Epstein_Ross_Interfaces
 
             string chosenItem = menu[_userChoiceInt - 1];
             //Console.WriteLine(chosenItem);
-            Console.WriteLine("They chose " + chosenItem);
             Animal _selectedAnimal = GetSelectedAnimal(chosenItem);
-            Console.WriteLine("Did it work? " + _selectedAnimal.Species);
-            Console.ReadKey();
             AnimalOptionsMenu(_selectedAnimal);
             
         }
@@ -102,20 +100,65 @@ namespace Epstein_Ross_Interfaces
             //Animal selectedAnimalObj = animals.Where(animals => animals.Species == chosenAnimalName);
             selectedAnimalObj = animals.Find(x => x.Species == chosenAnimalName);
 
-            Console.WriteLine("it pulled " + selectedAnimalObj.Species);
-            Console.ReadKey();
-            
-            
             return (Animal)selectedAnimalObj;
         }
 
         public static void AnimalOptionsMenu(Animal animal) 
         {
-
+            List<string> menuToUse = new List<string>();
             if (animal is ITrainable)
             {
-                
+                menuToUse = trainableMenu;
             }
+
+            else
+            {
+                menuToUse = nonTrainableMenu;
+            }
+
+            int menuLength = menuToUse.Count - 1;
+            int i = 1;
+            Console.Clear();
+            DisplayHeader($"Selected Animal: {animal.Species}");
+
+            foreach (var item in menuToUse)
+            {
+                Console.WriteLine($"[{i}]:  {item}");
+                i++;
+            }
+
+            Console.Write("Please make a selection >  ");
+            string _userChoice = Console.ReadLine();
+            
+            //validate the choice is an integer
+            bool isInt = Validation.CheckInt(_userChoice);
+            int _userChoiceInt = isInt ? Int32.Parse(_userChoice) : 000;
+
+            //validate the choice is in range of the menu
+            bool isInRange = Validation.CheckRange(_userChoiceInt, menuLength + 1);
+
+            //ask again if the validation returns false
+            while (!isInt || !isInRange)
+            {
+                Console.Clear();
+                DisplayHeader($"Selected Animal: {animal.Species}");
+
+                foreach (var item in menuToUse)
+                {
+                    Console.WriteLine($"[{i}]:  {item}");
+                    i++;
+                }
+
+                Console.Write("Please make a selection >  ");
+                
+                //error if menu selection out of range    
+                Console.Write($"Invalid entry!  Please enter a number between 1 and {menuLength} > ");
+                _userChoice = Console.ReadLine();
+                isInt = Validation.CheckInt(_userChoice);
+                _userChoiceInt = isInt ? Int32.Parse(_userChoice) : 000; ;
+                isInRange = Validation.CheckRange(_userChoiceInt, (menuLength + 1));
+            }
+
         }
 
     }
