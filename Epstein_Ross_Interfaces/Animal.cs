@@ -26,6 +26,7 @@ namespace Epstein_Ross_Interfaces
             _foodConsumed = foodConsumed;
             _treat = treat;
             _species = species;
+            
         }
 
 

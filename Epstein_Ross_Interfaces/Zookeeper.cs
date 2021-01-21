@@ -11,16 +11,16 @@ namespace Epstein_Ross_Interfaces
         public static List<String> menu = new List<String>();
         public static Animal selectedAnimalObj;
 
-        public static List<string> nonTrainableMenu = new List<string> {"Listen to a Noise","Feed Animal A Treat", "Select Different Animal" };
-        public static List<string> trainableMenu = new List<string> { "Listen to a Noise", "Feed Animal A Treat", "Select Different Animal","Train The Animal", "Signal A Behavior"};
+        public static List<string> nonTrainableMenu = new List<string> { "Listen to a Noise", "Feed Animal A Treat", "Select Different Animal" };
+        public static List<string> trainableMenu = new List<string> { "Listen to a Noise", "Feed Animal A Treat", "Select Different Animal", "Train The Animal", "Signal A Behavior" };
 
-        public Zookeeper() 
+        public Zookeeper()
         {
             CreateAnimals();
             DisplayMenu();
         }
 
-        public static void CreateAnimals() 
+        public static void CreateAnimals()
         {
             animals.Add(new Butterfly());
             animals.Add(new ET());
@@ -28,8 +28,8 @@ namespace Epstein_Ross_Interfaces
             animals.Add(new LuckDragon());
             animals.Add(new Unicorn());
             animals.Add(new Mogwai());
-            
-            foreach (var item in animals) 
+
+            foreach (var item in animals)
             {
                 menu.Add(item.Species);
             }
@@ -37,13 +37,13 @@ namespace Epstein_Ross_Interfaces
 
         }
 
-        public static void DisplayMenu() 
+        public static void DisplayMenu()
         {
             int menuLength = menu.Count - 1;
             int i = 1;
-            
+
             DisplayHeader("WELCOME TO THE MYTHICAL ZOO");
-            
+
             foreach (var item in menu)
             {
                 Console.WriteLine($"[{i}]:  {item}");
@@ -83,8 +83,9 @@ namespace Epstein_Ross_Interfaces
             string chosenItem = menu[_userChoiceInt - 1];
             //Console.WriteLine(chosenItem);
             Animal _selectedAnimal = GetSelectedAnimal(chosenItem);
-            AnimalOptionsMenu(_selectedAnimal);
             
+            AnimalOptionsMenu(_selectedAnimal);
+
         }
 
         public static void DisplayHeader(string headerName)
@@ -94,7 +95,7 @@ namespace Epstein_Ross_Interfaces
             Console.WriteLine("===================================================");
         }
 
-        public static Animal GetSelectedAnimal(string chosenAnimalName) 
+        public static Animal GetSelectedAnimal(string chosenAnimalName)
         {
 
             //Animal selectedAnimalObj = animals.Where(animals => animals.Species == chosenAnimalName);
@@ -103,9 +104,10 @@ namespace Epstein_Ross_Interfaces
             return (Animal)selectedAnimalObj;
         }
 
-        public static void AnimalOptionsMenu(Animal animal) 
+        public static void AnimalOptionsMenu(Animal animal)
         {
             List<string> menuToUse = new List<string>();
+
             if (animal is ITrainable)
             {
                 menuToUse = trainableMenu;
@@ -129,7 +131,7 @@ namespace Epstein_Ross_Interfaces
 
             Console.Write("Please make a selection >  ");
             string _userChoice = Console.ReadLine();
-            
+
             //validate the choice is an integer
             bool isInt = Validation.CheckInt(_userChoice);
             int _userChoiceInt = isInt ? Int32.Parse(_userChoice) : 000;
@@ -150,7 +152,7 @@ namespace Epstein_Ross_Interfaces
                 }
 
                 Console.Write("Please make a selection >  ");
-                
+
                 //error if menu selection out of range    
                 Console.Write($"Invalid entry!  Please enter a number between 1 and {menuLength} > ");
                 _userChoice = Console.ReadLine();
@@ -159,7 +161,52 @@ namespace Epstein_Ross_Interfaces
                 isInRange = Validation.CheckRange(_userChoiceInt, (menuLength + 1));
             }
 
+            string chosenItem = menuToUse[_userChoiceInt - 1];
+
+            switch (chosenItem.ToLower())
+            {
+                case "listen to a noise":
+                    MakeNoiseCall(animal);
+                    break;
+            }
+
         }
 
+
+        public static void MakeNoiseCall(Animal animal)
+        {
+            if (animal is Unicorn) 
+            {
+                Console.WriteLine(((Unicorn)animal).MakeNoise(((Unicorn)animal).Noise));
+                Console.WriteLine("Press Any Key To Continue...");
+            }
+            if (animal is Butterfly)
+            {
+                Console.WriteLine(((Butterfly)animal).MakeNoise(((Butterfly)animal).Noise));
+                Console.WriteLine("Press Any Key To Continue...");
+            }
+            if (animal is Jackalope)
+            {
+                Console.WriteLine(((Jackalope)animal).MakeNoise(((Jackalope)animal).Noise));
+                Console.WriteLine("Press Any Key To Continue...");
+            }
+            if (animal is LuckDragon)
+            {
+                Console.WriteLine(((LuckDragon)animal).MakeNoise(((LuckDragon)animal).Noise));
+                Console.WriteLine("Press Any Key To Continue...");
+            }
+            if (animal is Mogwai)
+            {
+                Console.WriteLine(((Mogwai)animal).MakeNoise(((Mogwai)animal).Noise));
+                Console.WriteLine("Press Any Key To Continue...");
+            }
+            if (animal is ET)
+            {
+                Console.WriteLine(((ET)animal).MakeNoise(((ET)animal).Noise));
+                Console.WriteLine("Press Any Key To Continue...");
+            }
+
+
+        }
     }
 }

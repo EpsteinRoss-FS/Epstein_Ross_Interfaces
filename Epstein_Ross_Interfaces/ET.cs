@@ -6,10 +6,19 @@ namespace Epstein_Ross_Interfaces
 {
     class ET : Animal, ITrainable
     {
-        public string noise = "\"ET...Phone...Home....\"";
+        private string _noise;
+
+        public string Noise
+        {
+            get
+            {
+                return _noise;
+            }
+        }
+        
         public ET(string species = "E.T.", int foodConsumed = 0, string treat = "Reese's Pieces") : base(species, foodConsumed, treat)
         {
-
+            _noise = "\"ET...Phone...Home....\"";
         }
 
         Dictionary<string, string> ITrainable.Behaviors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
