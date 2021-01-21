@@ -43,7 +43,7 @@ namespace Epstein_Ross_Interfaces
             Console.ReadKey();
         }
 
-        public static string Eat(Animal animal, string animalName) 
+        public string Eat(Animal animal, string animalName) 
         {
             animal._foodConsumed++;
             
@@ -53,7 +53,9 @@ namespace Epstein_Ross_Interfaces
                 animal._foodConsumed = 0;
                 Poop(animalName);
             }
-            return ($"{animalName} ate a {animal.Treat}");
+            
+                return ($"{animalName} ate a {animal.Treat}");
+            
         }
         
 

@@ -152,6 +152,7 @@ namespace Epstein_Ross_Interfaces
             //ask again if the validation returns false
             while (!isInt || !isInRange)
             {
+                i = 1;
                 Console.Clear();
                 DisplayHeader($"Selected Animal: {animal.Species}");
 
@@ -175,8 +176,12 @@ namespace Epstein_Ross_Interfaces
 
             switch (chosenItem.ToLower())
             {
+                //"Listen to a Noise", "Feed Animal A Treat", "Select Different Animal", "Train The Animal", "Signal A Behavior"
                 case "listen to a noise":
                     MakeNoiseCall(animal);
+                    break;
+                case "feed animal a treat":
+                    FeedAnimal(animal);
                     break;
             }
 
@@ -217,6 +222,12 @@ namespace Epstein_Ross_Interfaces
             }
             return;
 
+        }
+
+        public static void FeedAnimal(Animal animal) 
+        {
+            Console.WriteLine(animal.Eat(animal, animal.Species));
+            Console.ReadKey();
         }
     }
 }
