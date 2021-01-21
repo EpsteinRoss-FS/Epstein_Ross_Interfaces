@@ -9,5 +9,8 @@ namespace Epstein_Ross_Interfaces
         Dictionary<string, string> Behaviors { get; set; }
         string Perform(string signal);
         string Train(string signal, string behavior);
+
+
+
     }
 }

@@ -12,19 +12,26 @@ namespace Epstein_Ross_Interfaces
             get{ return _treat; }
             set { _treat = value; }
         }
+
+        private string _species;
+        public string Species { 
+            get { return _species; } 
+        }
         
         public int _foodConsumed;
 
 
-        public Animal(int foodConsumed = 0, string treat = "cabbage") 
+        public Animal(string species, int foodConsumed, string treat) 
         {
             _foodConsumed = foodConsumed;
             _treat = treat;
+            _species = species;
         }
 
 
-        public virtual string MakeNoise(string noise)
+        public virtual string MakeNoise(string animalNoise, string animalName)
         {
+            string noise = $"The {animalName} goes {animalNoise}"; 
             return noise;
         }
 
