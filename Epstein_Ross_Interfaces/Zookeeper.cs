@@ -14,10 +14,14 @@ namespace Epstein_Ross_Interfaces
         public static List<string> nonTrainableMenu = new List<string> { "Listen to a Noise", "Feed Animal A Treat", "Select Different Animal" };
         public static List<string> trainableMenu = new List<string> { "Listen to a Noise", "Feed Animal A Treat", "Select Different Animal", "Train The Animal", "Signal A Behavior" };
 
+        public static bool exited = false;
         public Zookeeper()
         {
             CreateAnimals();
-            DisplayMenu();
+            while (!exited) 
+            { 
+                DisplayMenu();
+            }
         }
 
         public static void CreateAnimals()
@@ -83,6 +87,12 @@ namespace Epstein_Ross_Interfaces
             string chosenItem = menu[_userChoiceInt - 1];
             //Console.WriteLine(chosenItem);
             Animal _selectedAnimal = GetSelectedAnimal(chosenItem);
+            if (chosenItem.ToLower() == "exit") 
+            {
+                exited = true;
+                Console.WriteLine("Thank your for visiting the Mystical Zoo! Have a great day!");
+                return;
+            }
             
             AnimalOptionsMenu(_selectedAnimal);
 
@@ -205,7 +215,7 @@ namespace Epstein_Ross_Interfaces
                 Console.WriteLine(((ET)animal).MakeNoise(((ET)animal).Noise));
                 Console.WriteLine("Press Any Key To Continue...");
             }
-
+            return;
 
         }
     }
