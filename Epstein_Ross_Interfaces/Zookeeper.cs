@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Epstein_Ross_Interfaces
@@ -8,6 +9,10 @@ namespace Epstein_Ross_Interfaces
     {
         public static List<Animal> animals = new List<Animal>();
         public static List<String> menu = new List<String>();
+        public static Animal selectedAnimalObj;
+
+        public static List<string> animalOptions = { }
+
         public Zookeeper() 
         {
             CreateAnimals();
@@ -75,8 +80,13 @@ namespace Epstein_Ross_Interfaces
             }
 
             string chosenItem = menu[_userChoiceInt - 1];
-            Console.WriteLine(chosenItem);
+            //Console.WriteLine(chosenItem);
+            Console.WriteLine("They chose " + chosenItem);
+            Animal _selectedAnimal = GetSelectedAnimal(chosenItem);
+            Console.WriteLine("Did it work? " + _selectedAnimal.Species);
             Console.ReadKey();
+            AnimalOptionsMenu(_selectedAnimal);
+            
         }
 
         public static void DisplayHeader(string headerName)
@@ -84,6 +94,28 @@ namespace Epstein_Ross_Interfaces
             Console.Clear();
             Console.WriteLine(headerName.ToUpper());
             Console.WriteLine("===================================================");
+        }
+
+        public static Animal GetSelectedAnimal(string chosenAnimalName) 
+        {
+
+            //Animal selectedAnimalObj = animals.Where(animals => animals.Species == chosenAnimalName);
+            selectedAnimalObj = animals.Find(x => x.Species == chosenAnimalName);
+
+            Console.WriteLine("it pulled " + selectedAnimalObj.Species);
+            Console.ReadKey();
+            
+            
+            return (Animal)selectedAnimalObj;
+        }
+
+        public static void AnimalOptionsMenu(Animal animal) 
+        {
+
+            if (animal is ITrainable)
+            {
+                
+            }
         }
 
     }
