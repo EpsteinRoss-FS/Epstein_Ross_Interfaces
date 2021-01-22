@@ -26,12 +26,19 @@ namespace Epstein_Ross_Interfaces
 
         public static void CreateAnimals()
         {
-            animals.Add(new Butterfly());
-            animals.Add(new ET());
-            animals.Add(new Jackalope());
-            animals.Add(new LuckDragon());
-            animals.Add(new Unicorn());
-            animals.Add(new Mogwai());
+            Butterfly buterrfly = new Butterfly();
+            ET et = new ET();
+            Jackalope jackalope = new Jackalope();
+            LuckDragon luckDragon = new LuckDragon();
+            Unicorn unicorn = new Unicorn();
+            Mogwai mogwai = new Mogwai();
+
+            animals.Add(buterrfly);
+            animals.Add(et);
+            animals.Add(jackalope);
+            animals.Add(luckDragon);
+            animals.Add(unicorn);
+            animals.Add(mogwai);
 
             foreach (var item in animals)
             {

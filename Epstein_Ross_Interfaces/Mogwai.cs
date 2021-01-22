@@ -7,8 +7,17 @@ namespace Epstein_Ross_Interfaces
     class Mogwai : Animal, ITrainable
     {
 
-        Dictionary<string, string> Behaviors;
+        public Dictionary<string, string> Behaviors 
+        {
+            get { return _behaviors; }
+            set { Behaviors = value; }
+            
+        }
+
+        public Dictionary<string, string> _behaviors { get; }
         
+      
+
         private string _noise;
 
         public string Noise
@@ -24,7 +33,7 @@ namespace Epstein_Ross_Interfaces
         public Mogwai(string species = "Mogwai", int foodConsumed = 0, string treat = "fried chicken") : base(species, foodConsumed, treat)
         {
             _noise = "\"Bright light. Bright light.\"";
-            
+            _behaviors = new Dictionary<string, string>();
         }
 
         Dictionary<string, string> ITrainable.Behaviors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
