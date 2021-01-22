@@ -6,6 +6,16 @@ namespace Epstein_Ross_Interfaces
 {
     class ET : Animal, ITrainable
     {
+
+        public Dictionary<string, string> Behaviors
+        {
+            get { return _behaviors; }
+            set { Behaviors = value; }
+
+        }
+
+        public Dictionary<string, string> _behaviors { get; }
+
         private string _noise;
 
         public string Noise
@@ -19,24 +29,25 @@ namespace Epstein_Ross_Interfaces
         public ET(string species = "E.T.", int foodConsumed = 0, string treat = "Reese's Pieces") : base(species, foodConsumed, treat)
         {
             _noise = "\"ET...Phone...Home....\"";
+            _behaviors = new Dictionary<string, string>();
         }
 
-        Dictionary<string, string> ITrainable.Behaviors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+        
         public override string MakeNoise(string noise, string animalName = "E.T.")
         {
             return base.MakeNoise(noise, animalName);
 
         }
-
-        string ITrainable.Perform(string signal)
+        public string Perform(string signal)
         {
             throw new NotImplementedException();
         }
 
-        string ITrainable.Train(string signal, string behavior)
+        public string Train(string signal, string behavior)
         {
-            throw new NotImplementedException();
+
+            Behaviors.Add(signal, behavior);
+            return ($"When given the signal {signal} the Mogwai will {behavior}");
         }
     }
 }

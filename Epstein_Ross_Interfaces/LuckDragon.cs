@@ -6,6 +6,16 @@ namespace Epstein_Ross_Interfaces
 {
     class LuckDragon : Animal, ITrainable
     {
+
+        public Dictionary<string, string> Behaviors
+        {
+            get { return _behaviors; }
+            set { Behaviors = value; }
+
+        }
+
+        public Dictionary<string, string> _behaviors { get; }
+
         private string _noise;
 
         public string Noise
@@ -18,6 +28,7 @@ namespace Epstein_Ross_Interfaces
         public LuckDragon(string species = "Luck Dragon", int foodConsumed = 0, string treat = "Something, but never children!") : base(species, foodConsumed, treat)
         {
             _noise = "\"Never give up and good luck will find you.\"";
+            _behaviors = new Dictionary<string, string>();
         }
         public override string MakeNoise(string noise, string animalName = "Luck Dragon")
         {
@@ -25,16 +36,16 @@ namespace Epstein_Ross_Interfaces
 
         }
 
-        Dictionary<string, string> ITrainable.Behaviors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        string ITrainable.Perform(string signal)
+        public string Perform(string signal)
         {
             throw new NotImplementedException();
         }
 
-        string ITrainable.Train(string signal, string behavior)
+        public string Train(string signal, string behavior)
         {
-            throw new NotImplementedException();
+
+            Behaviors.Add(signal, behavior);
+            return ($"When given the signal {signal} the Mogwai will {behavior}");
         }
     }
 }

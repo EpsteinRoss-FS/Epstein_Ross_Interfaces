@@ -307,11 +307,40 @@ namespace Epstein_Ross_Interfaces
 
         public static void SignalBehavior(Animal animal)
         {
-            foreach (var behavior in ((Mogwai)animal).Behaviors) 
+            Console.Clear();
+            DisplayHeader($"Give Signal To {animal.Species}");
+            Console.Write($"What signal would you like to give the {animal.Species}?  >  ");
+            string _giveSignal = Console.ReadLine();
+            bool signalValid = Validation.ValidateString(_giveSignal);
+
+            while (!signalValid) 
             {
-                Console.WriteLine(behavior.Key);
+                Console.Clear();
+                DisplayHeader($"Give Signal To {animal.Species}");
+                Console.Write($"Invalid entry!");
+                Console.Write($"What signal would you like to give the {animal.Species}?  >  ");
+                _giveSignal = Console.ReadLine();
+                signalValid = Validation.ValidateString(_giveSignal);
             }
-            Console.ReadKey();
+
+            if (animal is Mogwai)
+            {
+                ((Mogwai)animal).Perform(_giveSignal);
+            }
+            
+            if (animal is LuckDragon)
+            {
+                ((LuckDragon)animal).Perform(_giveSignal);
+            }
+            
+            if (animal is ET)
+            {
+                ((ET)animal).Perform(_giveSignal);
+            }
+            
+            
+
+
         }
     }
 }

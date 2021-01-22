@@ -36,7 +36,7 @@ namespace Epstein_Ross_Interfaces
             _behaviors = new Dictionary<string, string>();
         }
 
-        Dictionary<string, string> ITrainable.Behaviors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        //Dictionary<string, string> ITrainable.Behaviors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public override string MakeNoise(string noise, string animalName = "Mogwai")
         {
@@ -44,7 +44,7 @@ namespace Epstein_Ross_Interfaces
 
         }
 
-        public void Perform(string signal)
+        public string Perform(string signal)
         {
             throw new NotImplementedException();
         }
@@ -56,9 +56,5 @@ namespace Epstein_Ross_Interfaces
             return ($"When given the signal {signal} the Mogwai will {behavior}");
         }
 
-        string ITrainable.Perform(string signal)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
