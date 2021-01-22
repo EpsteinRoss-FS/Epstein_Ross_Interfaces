@@ -19,14 +19,13 @@ namespace Epstein_Ross_Interfaces
         {
             _noise = "\"Never give up and good luck will find you.\"";
         }
-
-        Dictionary<string, string> ITrainable.Behaviors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
         public override string MakeNoise(string noise, string animalName = "Luck Dragon")
         {
             return base.MakeNoise(noise, animalName);
 
         }
+
+        Dictionary<string, string> ITrainable.Behaviors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         string ITrainable.Perform(string signal)
         {

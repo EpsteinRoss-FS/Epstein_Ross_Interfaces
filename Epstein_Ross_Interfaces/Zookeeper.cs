@@ -183,6 +183,12 @@ namespace Epstein_Ross_Interfaces
                 case "feed animal a treat":
                     FeedAnimal(animal);
                     break;
+                case "select different animal":
+                    return;
+                case "train the animal":
+                    TrainAnimal(animal);
+                    break;
+
             }
 
         }
@@ -228,6 +234,45 @@ namespace Epstein_Ross_Interfaces
         {
             Console.WriteLine(animal.Eat(animal, animal.Species));
             Console.ReadKey();
+        }
+
+        public static void TrainAnimal(Animal animal) 
+        {
+            Console.Clear();
+            DisplayHeader($"train {animal.Species}");
+
+            Console.Write($"What would you like to train the {animal.Species} to do?  >  ");
+            string desiredTask = Console.ReadLine();
+            bool stringValid = Validation.ValidateString(desiredTask);
+
+            while (!stringValid) 
+            {
+                Console.Clear();
+                DisplayHeader($"train {animal.Species}");
+                Console.WriteLine("Invalid Entry!");
+                Console.Write($"What would you like to train the {animal.Species} to do?  >  ");
+                desiredTask = Console.ReadLine();
+                stringValid = Validation.ValidateString(desiredTask);
+
+            }
+            
+            Console.Clear();
+            DisplayHeader($"train {animal.Species}");
+            Console.Write($"What would you like the trigger for this behavior to be?  >  ");
+            string desiredTrigger = Console.ReadLine();
+
+            bool triggerStringValid = Validation.ValidateString(desiredTrigger);
+
+            while (!triggerStringValid)
+            {
+                Console.Clear();
+                DisplayHeader($"train {animal.Species}");
+                Console.WriteLine("Invalid Entry!");
+                Console.Write($"What would you like the trigger for this behavior to be?  >  ");
+                desiredTrigger = Console.ReadLine();
+                triggerStringValid = Validation.ValidateString(desiredTrigger);
+            }
+
         }
     }
 }

@@ -37,10 +37,10 @@ namespace Epstein_Ross_Interfaces
         }
 
         //this may be my favorite method I've ever written - RE
-        public static void Poop(string animalName) 
+        public static string Poop(string animalName) 
         {
-            Console.WriteLine($"{animalName} has pooped!");
-            Console.ReadKey();
+            string poop = $"{animalName} has pooped!";
+            return poop;
         }
 
         public string Eat(Animal animal, string animalName) 
@@ -49,13 +49,16 @@ namespace Epstein_Ross_Interfaces
             
             if (animal._foodConsumed >= 4)
             {
-                Console.WriteLine($"{animalName} ate their 4th {animal.Treat}!");
+                
                 animal._foodConsumed = 0;
-                Poop(animalName);
+                string poop = Poop(animalName);
+                return($"{animalName} ate their 4th {animal.Treat}! {poop}");
             }
-            
+            else 
+            { 
                 return ($"{animalName} ate a {animal.Treat}");
-            
+            }
+
         }
         
 
