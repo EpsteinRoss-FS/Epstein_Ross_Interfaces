@@ -188,6 +188,9 @@ namespace Epstein_Ross_Interfaces
                 case "train the animal":
                     TrainAnimal(animal);
                     break;
+                case "signal a behavior":
+                    SignalBehavior(animal);
+                    break;
 
             }
 
@@ -273,6 +276,35 @@ namespace Epstein_Ross_Interfaces
                 triggerStringValid = Validation.ValidateString(desiredTrigger);
             }
 
+            
+            if (animal is LuckDragon)
+            {
+                //((LuckDragon)animal);
+                
+            }
+            if (animal is Mogwai)
+            {
+                string trainedDescriptor = ((Mogwai)animal).Train(desiredTrigger, desiredTask);
+                Console.WriteLine(trainedDescriptor);
+                Console.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
+            }
+            if (animal is ET)
+            {
+                Console.WriteLine(((ET)animal).MakeNoise(((ET)animal).Noise));
+                Console.WriteLine("Press Any Key To Continue...");
+            }
+
+          
+        }
+
+        public static void SignalBehavior(Animal animal)
+        {
+            foreach (var behavior in ((Mogwai)animal).Behaviors) 
+            {
+                Console.WriteLine(behavior.Key);
+            }
+            Console.ReadKey();
         }
     }
 }
