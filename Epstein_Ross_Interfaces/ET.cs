@@ -61,7 +61,6 @@ namespace Epstein_Ross_Interfaces
 
         public string Train(string signal, string behavior)
         {
-
             Behaviors.Add(signal, behavior);
             return ($"When given the signal {signal} the Mogwai will {behavior}");
         }

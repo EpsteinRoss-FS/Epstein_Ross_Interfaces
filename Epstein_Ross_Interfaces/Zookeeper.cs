@@ -13,6 +13,7 @@ namespace Epstein_Ross_Interfaces
 {
     class Zookeeper
     {
+        //initalize variables
         public static List<Animal> animals = new List<Animal>();
         public static List<String> menu = new List<String>();
         public static Animal selectedAnimalObj;
@@ -21,6 +22,8 @@ namespace Epstein_Ross_Interfaces
         public static List<string> trainableMenu = new List<string> { "Listen to a Noise", "Feed Animal A Treat", "Select Different Animal", "Train The Animal", "Signal A Behavior" };
 
         public static bool exited = false;
+
+        //create zookeeper constructor
         public Zookeeper()
         {
             CreateAnimals();
@@ -29,7 +32,8 @@ namespace Epstein_Ross_Interfaces
                 DisplayMenu();
             }
         }
-
+        
+        //create animals for the list
         public static void CreateAnimals()
         {
             Butterfly buterrfly = new Butterfly();
@@ -39,6 +43,7 @@ namespace Epstein_Ross_Interfaces
             Unicorn unicorn = new Unicorn();
             Mogwai mogwai = new Mogwai();
 
+            //add animals to the dict
             animals.Add(buterrfly);
             animals.Add(et);
             animals.Add(jackalope);
@@ -46,6 +51,7 @@ namespace Epstein_Ross_Interfaces
             animals.Add(unicorn);
             animals.Add(mogwai);
 
+            //create menu of just names for simplicity of display
             foreach (var item in animals)
             {
                 menu.Add(item.Species);
@@ -56,6 +62,7 @@ namespace Epstein_Ross_Interfaces
 
         public static void DisplayMenu()
         {
+            //menu functionality
             int menuLength = menu.Count - 1;
             int i = 1;
 
@@ -107,10 +114,12 @@ namespace Epstein_Ross_Interfaces
                 return;
             }
             
+            //get options for selected animal
             AnimalOptionsMenu(_selectedAnimal);
 
         }
 
+        //header method
         public static void DisplayHeader(string headerName)
         {
             Console.Clear();
@@ -129,13 +138,17 @@ namespace Epstein_Ross_Interfaces
 
         public static void AnimalOptionsMenu(Animal animal)
         {
+            //get available options for selected animal
             List<string> menuToUse = new List<string>();
 
+
+            //use trainable menu
             if (animal is ITrainable)
             {
                 menuToUse = trainableMenu;
             }
 
+            //use non trainable menu
             else
             {
                 menuToUse = nonTrainableMenu;
@@ -187,9 +200,10 @@ namespace Epstein_Ross_Interfaces
 
             string chosenItem = menuToUse[_userChoiceInt - 1];
 
+            //figure out user selection
             switch (chosenItem.ToLower())
             {
-                //"Listen to a Noise", "Feed Animal A Treat", "Select Different Animal", "Train The Animal", "Signal A Behavior"
+                //parse selection
                 case "listen to a noise":
                     MakeNoiseCall(animal);
                     break;
@@ -212,6 +226,7 @@ namespace Epstein_Ross_Interfaces
 
         public static void MakeNoiseCall(Animal animal)
         {
+            //make noise call based on the user's animal passed in
             if (animal is Unicorn) 
             {
                 Console.WriteLine(((Unicorn)animal).MakeNoise(((Unicorn)animal).Noise));
@@ -254,12 +269,14 @@ namespace Epstein_Ross_Interfaces
 
         public static void FeedAnimal(Animal animal) 
         {
+            //feed the desired animal
             Console.WriteLine(animal.Eat(animal, animal.Species));
             Console.ReadKey();
         }
 
         public static void TrainAnimal(Animal animal) 
         {
+            //train animal
             Console.Clear();
             DisplayHeader($"train {animal.Species}");
 
@@ -295,7 +312,7 @@ namespace Epstein_Ross_Interfaces
                 triggerStringValid = Validation.ValidateString(desiredTrigger);
             }
 
-            
+            //pass to proper class object's dictionary
             if (animal is LuckDragon)
             {
                 string trainedDescriptor = ((LuckDragon)animal).Train(desiredTrigger, desiredTask);
