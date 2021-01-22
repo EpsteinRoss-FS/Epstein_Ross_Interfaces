@@ -286,8 +286,11 @@ namespace Epstein_Ross_Interfaces
             
             if (animal is LuckDragon)
             {
-                //((LuckDragon)animal);
-                
+                string trainedDescriptor = ((LuckDragon)animal).Train(desiredTrigger, desiredTask);
+                Console.WriteLine(trainedDescriptor);
+                Console.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
+
             }
             if (animal is Mogwai)
             {
@@ -298,6 +301,8 @@ namespace Epstein_Ross_Interfaces
             }
             if (animal is ET)
             {
+                string trainedDescriptor = ((ET)animal).Train(desiredTrigger, desiredTask);
+                Console.WriteLine(trainedDescriptor);
                 Console.WriteLine(((ET)animal).MakeNoise(((ET)animal).Noise));
                 Console.WriteLine("Press Any Key To Continue...");
             }
@@ -333,14 +338,14 @@ namespace Epstein_Ross_Interfaces
             
             if (animal is LuckDragon)
             {
-                ((LuckDragon)animal).Perform(_giveSignal);
+                Console.WriteLine(((LuckDragon)animal).Perform(_giveSignal));
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
             
             if (animal is ET)
             {
-                ((ET)animal).Perform(_giveSignal);
+                Console.WriteLine(((ET)animal).Perform(_giveSignal));
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
