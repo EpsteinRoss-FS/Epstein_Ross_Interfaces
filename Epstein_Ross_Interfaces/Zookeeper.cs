@@ -325,7 +325,10 @@ namespace Epstein_Ross_Interfaces
 
             if (animal is Mogwai)
             {
-                ((Mogwai)animal).Perform(_giveSignal);
+                Console.WriteLine(((Mogwai)animal).Perform(_giveSignal));
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                
             }
             
             if (animal is LuckDragon)
