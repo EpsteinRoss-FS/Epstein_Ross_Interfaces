@@ -210,31 +210,37 @@ namespace Epstein_Ross_Interfaces
             {
                 Console.WriteLine(((Unicorn)animal).MakeNoise(((Unicorn)animal).Noise));
                 Console.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
             }
             if (animal is Butterfly)
             {
                 Console.WriteLine(((Butterfly)animal).MakeNoise(((Butterfly)animal).Noise));
                 Console.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
             }
             if (animal is Jackalope)
             {
                 Console.WriteLine(((Jackalope)animal).MakeNoise(((Jackalope)animal).Noise));
                 Console.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
             }
             if (animal is LuckDragon)
             {
                 Console.WriteLine(((LuckDragon)animal).MakeNoise(((LuckDragon)animal).Noise));
                 Console.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
             }
             if (animal is Mogwai)
             {
                 Console.WriteLine(((Mogwai)animal).MakeNoise(((Mogwai)animal).Noise));
                 Console.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
             }
             if (animal is ET)
             {
                 Console.WriteLine(((ET)animal).MakeNoise(((ET)animal).Noise));
                 Console.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
             }
             return;
 
@@ -303,8 +309,8 @@ namespace Epstein_Ross_Interfaces
             {
                 string trainedDescriptor = ((ET)animal).Train(desiredTrigger, desiredTask);
                 Console.WriteLine(trainedDescriptor);
-                Console.WriteLine(((ET)animal).MakeNoise(((ET)animal).Noise));
                 Console.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
             }
 
           
