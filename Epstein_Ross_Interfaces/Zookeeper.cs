@@ -334,11 +334,15 @@ namespace Epstein_Ross_Interfaces
             if (animal is LuckDragon)
             {
                 ((LuckDragon)animal).Perform(_giveSignal);
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
             }
             
             if (animal is ET)
             {
                 ((ET)animal).Perform(_giveSignal);
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
             }
             
             

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Epstein_Ross_Interfaces
@@ -40,7 +41,16 @@ namespace Epstein_Ross_Interfaces
         }
         public string Perform(string signal)
         {
-            throw new NotImplementedException();
+            foreach (var behavior in Behaviors.Keys)
+            {
+                if (behavior.ToLower() == signal.ToLower())
+                {
+                    var behaviorFound = Behaviors.Single(x => x.Key == signal);
+                    return ($"The ET gets the signal {behaviorFound.Key} and {behaviorFound.Value}");
+                }
+
+            }
+            return ($"The ET doesn't understand the signal {signal}");
         }
 
         public string Train(string signal, string behavior)
