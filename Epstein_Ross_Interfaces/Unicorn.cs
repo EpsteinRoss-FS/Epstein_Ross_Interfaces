@@ -1,4 +1,10 @@
-﻿using System;
+﻿/**
+ * Ross Epstein
+ * January 22nd, 2021
+ * Week 3 - Interfaces
+ * **/
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
